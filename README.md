@@ -8,3 +8,5 @@ Your repository should contain:
 2.  A primary vignette document that explains methods and walks through implementation line-by-line (similar to an in-class or lab activity)
 3.  At least one example dataset
 4.  A script containing commented codes appearing in the vignette
+
+In this project, we will be creating a vignette regarding the mushroom data.
