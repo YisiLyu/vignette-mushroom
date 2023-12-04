@@ -1,0 +1,11 @@
+---
+title: "vignette.qmd"
+format: html
+editor: visual
+date: today
+author: Mindy, Zoe, Amy, Jerry
+---
+
+## Introduction
+
+In this project, we are presenting a vignette on mushroom data.
