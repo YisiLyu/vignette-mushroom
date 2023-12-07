@@ -1,4 +1,5 @@
-Ignore all ".log" files:'*.log'
-
-
+# Ignore all ".log" files:'*.log'
+# Ignore R history and data files
+.Rhistory
+.RData
 .Rproj.user
