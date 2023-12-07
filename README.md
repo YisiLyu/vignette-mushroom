@@ -9,4 +9,4 @@ Your repository should contain:
 3.  At least one example dataset
 4.  A script containing commented codes appearing in the vignette
 
-In this project, we will be creating a vignette regarding the mushroom data.
+In this project, we will be creating a vignette regarding Random forest using the mushroom data.
