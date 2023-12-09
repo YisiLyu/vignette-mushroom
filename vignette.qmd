@@ -3,9 +3,17 @@ title: "vignette.qmd"
 format: html
 editor: visual
 date: today
-author: Mindy, Zoe, Amy, Jerry
+author: Mindy Xu, Zoe Zhou, Amy Lyu, Jerry Huang
 ---
 
 ## Introduction
 
-In this project, we are presenting a vignette on mushroom data.
+In this project, we are presenting a vignette on Random Forest. If you are new to this topic, then this vignette would be a great guideline for you to have a great understanding on Random forest model, and we will also show the sample code on a dataset to predict the edibility of mushrooms using Random Forest.
+
+*Objectives:*
+
+-   learn the algorithms behind Random Forest
+
+    -   This includes decision trees, hyperparameters & tuning
+
+-   Use R to fit a model with Random Forest Regression Model
