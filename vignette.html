@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Mindy Xu, Zoe Zhou, Amy Lyu, Jerry Huang">
-<meta name="dcterms.date" content="2023-12-08">
+<meta name="dcterms.date" content="2023-12-10">
 
 <title>vignette.qmd</title>
 <style>
@@ -64,7 +64,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 8, 2023</p>
+      <p class="date">December 10, 2023</p>
     </div>
   </div>
   
@@ -76,15 +76,76 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<blockquote class="blockquote">
 <p>In this project, we are presenting a vignette on Random Forest. If you are new to this topic, then this vignette would be a great guideline for you to have a great understanding on Random forest model, and we will also show the sample code on a dataset to predict the edibility of mushrooms using Random Forest.</p>
-<p><em>Objectives:</em></p>
+</blockquote>
+<p><em>Learning Objectives:</em></p>
 <ul>
 <li><p>learn the algorithms behind Random Forest</p>
 <ul>
 <li>This includes decision trees, hyperparameters &amp; tuning</li>
 </ul></li>
-<li><p>Use R to fit a model with Random Forest Regression Model</p></li>
+<li><p>Implement Random Forest on a classification problem using R</p></li>
 </ul>
+<p>Here we have a introductory video for you to better know what is Random Forest.</p>
+<p><a href="https://www.youtube.com/watch?v=v6VJ2RO66Ag">Introductory Video</a></p>
+</section>
+<section id="algorithm" class="level2">
+<h2 class="anchored" data-anchor-id="algorithm">Algorithm</h2>
+<section id="what-is-random-forest-algorithm" class="level4">
+<h4 class="anchored" data-anchor-id="what-is-random-forest-algorithm">What is Random Forest Algorithm?</h4>
+<blockquote class="blockquote">
+<p>Random Forest Algorithm widespread popularity stems from its user-friendly nature and adaptability, enabling it to tackle both classification and regression problems effectively. The algorithm’s strength lies in its ability to handle complex datasets and mitigate overfitting, making it a valuable tool for various predictive tasks in machine learning.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>One of the most important features of the Random Forest Algorithm is that it can handle the data set containing <strong>continuous variables</strong>, as in the case of <strong>regression</strong>, and <strong>categorical variables</strong>, as in the case of <strong>classification</strong>. It performs better for classification and regression tasks. In this tutorial, we will understand the working of random forest and implement random forest on a classification task.</p>
+</blockquote>
+<p><img src="image/img-rfsimplified.png" class="img-fluid"></p>
+</section>
+<section id="steps-involved-in-random-forest-algorithm" class="level4">
+<h4 class="anchored" data-anchor-id="steps-involved-in-random-forest-algorithm">Steps Involved in Random Forest Algorithm</h4>
+<ul>
+<li>Step 1：In the Random forest model, a subset of data points and a subset of features is selected for constructing each decision tree. Simply put, n random records and m features are taken from the data set having k number of records.</li>
+<li>Step 2：Individual decision trees are constructed for each sample.</li>
+<li>Step 3：Each decision tree will generate an output.</li>
+<li>Step 4：Final output is considered based on <strong><em>Majority Voting or Averaging</em></strong> for Classification and regression, respectively.</li>
+</ul>
+</section>
+<section id="important-features-of-random-forest" class="level4">
+<h4 class="anchored" data-anchor-id="important-features-of-random-forest">Important Features of Random Forest</h4>
+<ul>
+<li><strong>Ensemble of Decision Trees：</strong> Random Forest is an ensemble learning method, which means it combines the predictions from multiple machine learning algorithms to make more accurate predictions than any individual model. Specifically, it builds multiple decision trees and merges them together to get a more accurate and stable prediction.</li>
+<li><strong>Handling of Both Categorical and Numerical Features：</strong>It can handle a mix of categorical and numerical features. There is no need to pre-process data to convert categorical features to numerical features.</li>
+<li><strong>Feature Importance：</strong>One of the useful outputs of Random Forest is the importance or contribution of each feature in the prediction. This helps in understanding the data better and can be used for feature selection.</li>
+<li><strong>Avoids Overfitting：</strong> Due to the way it constructs the decision trees (using a subset of features and samples), it generally does a good job of avoiding overfitting, especially compared to individual decision trees.</li>
+<li><strong>No Need for Future Scaling：</strong>Random Forest does not require feature scaling (like standardization or normalization) before input, as it does not rely on distance calculations.</li>
+<li><strong>Handles Missing Values:</strong> It can handle missing values in the data, though the way it does this can vary depending on the implementation.</li>
+<li><strong>Robust to Outliers:</strong> It is generally robust to outliers and can handle them better than many other algorithms.</li>
+<li><strong>Good for Large Datasets：</strong>It can handle large datasets with higher dimensionality (many features) and can evaluate the importance of different features for the classification/regression tasks.</li>
+<li><strong>Versatility in Performance Metrics：</strong> It supports various metrics for evaluating the performance suitable for different types of problems (classification, regression)</li>
+<li><strong>Parallelizable：</strong> The algorithm can be parallelized for execution because each tree in the forest is built independently of the others, which makes the algorithm well-suited for modern multi-processor computers.</li>
+</ul>
+</section>
+</section>
+<section id="example-data-mushroom-data-to-implement" class="level2">
+<h2 class="anchored" data-anchor-id="example-data-mushroom-data-to-implement">Example Data – Mushroom Data to Implement</h2>
+<section id="data-description" class="level4">
+<h4 class="anchored" data-anchor-id="data-description">Data Description</h4>
+<blockquote class="blockquote">
+<p>This dataset includes descriptions of hypothetical samples of 23 species of mushrooms. It contains 22 categorical predictor variables and one target variable. The objective is to use different attributes of the mushrooms to make the most accurate predictions of the edibility of them. The samples are hypothetical because the dataset was designed in a way so that no simple decision rules may apply. There are 8124 samples in total.</p>
+</blockquote>
+<section id="load-library" class="level5">
+<h5 class="anchored" data-anchor-id="load-library">Load Library</h5>
+<pre><code>library(randomForest)
+library(caret)
+library(ranger)</code></pre>
+</section>
+<section id="load-data" class="level5">
+<h5 class="anchored" data-anchor-id="load-data">Load Data</h5>
+<pre><code># loading the data
+mushrooms &lt;- read.csv('data/mushrooms.csv')</code></pre>
+</section>
+</section>
 </section>
 
 </main>
