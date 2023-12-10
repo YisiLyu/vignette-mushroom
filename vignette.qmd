@@ -8,12 +8,26 @@ author: Mindy Xu, Zoe Zhou, Amy Lyu, Jerry Huang
 
 ## Introduction
 
-In this project, we are presenting a vignette on Random Forest. If you are new to this topic, then this vignette would be a great guideline for you to have a great understanding on Random forest model, and we will also show the sample code on a dataset to predict the edibility of mushrooms using Random Forest.
+> In this project, we are presenting a vignette on Random Forest. If you are new to this topic, then this vignette would be a great guideline for you to have a great understanding on Random forest model, and we will also show the sample code on a dataset to predict the edibility of mushrooms using Random Forest.
 
-*Objectives:*
+*Learning Objectives:*
 
 -   learn the algorithms behind Random Forest
 
     -   This includes decision trees, hyperparameters & tuning
 
--   Use R to fit a model with Random Forest Regression Model
+-   Implement Random Forest on a classification problem using R
+
+Here we have a introductory video for you to better know what is Random Forest.
+
+[Introductory Video](https://www.youtube.com/watch?v=v6VJ2RO66Ag)
+
+## Algorithm
+
+#### What is Random Forest Algorithm?
+
+> Random Forest Algorithm widespread popularity stems from its user-friendly nature and adaptability, enabling it to tackle both classification and regression problems effectively. The algorithm's strength lies in its ability to handle complex datasets and mitigate overfitting, making it a valuable tool for various predictive tasks in machine learning.
+
+> One of the most important features of the Random Forest Algorithm is that it can handle the data set containing continuous variables, as in the case of regression, and **categorical variables**, as in the case of **classification**. It performs better for classification and regression tasks. In this tutorial, we will understand the working of random forest and implement random forest on a classification task.
+
+![](image/img-rfsimplified.png)

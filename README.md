@@ -9,4 +9,7 @@ Your repository should contain:
 3.  At least one example dataset
 4.  A script containing commented codes appearing in the vignette
 
-In this project, we will be creating a vignette regarding Random forest using the mushroom data.
+Vignette on implementing Random Forest using mushroom data; created as a class project for PSTAT197A in Fall 2023.
+
+Contributors: Mindy Xu, Zoe Zhou, Amy Lyu, Jerry Huang
+
