@@ -60,15 +60,27 @@ Here we have a introductory video for you to better know what is Random Forest.
 
 ##### Load Library
 
-```         
+```{r results='hide', message=FALSE}
+library(tidymodels)
+library(tidyverse)
 library(randomForest)
+library(dplyr)
 library(caret)
+library(janitor)
 library(ranger)
+tidymodels_prefer()
 ```
 
 ##### Load Data
 
-```         
+```{r}
 # loading the data
 mushrooms <- read.csv('data/mushrooms.csv')
+```
+
+##### Preliminary Task
+
+```{r}
+# cleaning predictor names
+mushrooms <- clean_names(mushrooms)
 ```
