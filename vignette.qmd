@@ -24,54 +24,61 @@ Here we have a introductory video for you to better know what is Random Forest.
 
 [Introductory Video](https://www.youtube.com/watch?v=v6VJ2RO66Ag)
 
-
 ## Example Data -- Mushroom Data to Implement
 
 ### Data Description
-    /* Description
+
+```         
+/* Description
+```
 
 ### Load Packages and data
 
 ### Preprocess the data
-    /* Sample Code: (turn a categorical variable into factors)
-    /* Action (turn other categorical variables into factors)
+
+```         
+/* Sample Code: (turn a categorical variable into factors)
+/* Action (turn other categorical variables into factors)
+```
 
 ## Intuition and Architecture
 
 ### Understanding Decision Trees
-    /* Description:
-    /* Sample code: 
-    /* Action:
+
+```         
+/* Description:
+/* Sample code: 
+/* Action:
+```
 
 ### Random Forest and Ensemble models
-    /* Description:
-    /* Sample code: Build a random forest model
-    /* Action: Try altering the number of trees / max depths of trees / etc and assess the model's performance.
-    
+
+```         
+/* Description:
+/* Sample code: Build a random forest model
+/* Action: Try altering the number of trees / max depths of trees / etc and assess the model's performance.
+```
+
 ## Hyperparameters Tuning
 
 ### Random Forest Parameters overview
 
 ### Grid/Cross-validation
-    /* Description
-    /* Sample code: tune one parameter
-    /* Action: tune other parameters using a grid
+
+```         
+/* Description
+/* Sample code: tune one parameter
+/* Action: tune other parameters using a grid
+```
 
 ## Understanding the Random Forest model
 
 ### Features Importance
-    /* Description
-    /* Sample code
-    
 
-    
-
-
-
-
-
-
-
+```         
+/* Description
+/* Sample code
+```
 
 > Random Forest Algorithm widespread popularity stems from its user-friendly nature and adaptability, enabling it to tackle both classification and regression problems effectively. The algorithm's strength lies in its ability to handle complex datasets and mitigate overfitting, making it a valuable tool for various predictive tasks in machine learning.
 
