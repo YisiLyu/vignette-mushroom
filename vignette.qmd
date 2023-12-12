@@ -85,16 +85,15 @@ library(janitor)
 library(ranger)
 tidymodels_prefer()
 
-
 # loading the data
-mushrooms <- read.csv('data/mushrooms.csv')
+hotel <- read.csv("data/HotelReservations.csv")
 ```
 
 ### Preprocess the data
 
 ```{r}
 # turn a categorical variable into factors
-mushrooms$class <- as.factor(mushrooms$class)
+hotel$booking_status <- as.factor(hotel$booking_status)
 ```
 
 ::: {.callout-note style="background-color: #ffebee; color: black; border-left: 3px solid red;"}
@@ -106,11 +105,11 @@ Turn other categorical variables into factors.
 ## Data Partition
 
 ```{r}
-set.seed(10000)
-# Splitting the data (70/30 split, stratify on capture rate)
-mushrooms_split <- initial_split(mushrooms, prop = 0.7, strata = class)
-mushrooms_train <- training(mushrooms_split)
-mushrooms_test <- testing(mushrooms_split)
+set.seed(3435)
+hotel_split <- initial_split(hotel, strata=
+                                 "booking_status", prop = 0.7)
+hotel_train <- training(hotel_split)
+hotel_test <- testing(hotel_split)
 ```
 
 ::: {.callout-note style="background-color: #ffebee; color: black; border-left: 3px solid red;"}
@@ -174,16 +173,21 @@ Try split the data with different stratification to see if the results change. I
 #### Important Features of Random Forest
 
 -   **Ensemble of Decision Trees：** Random Forest is an ensemble learning method, which means it combines the predictions from multiple machine learning algorithms to make more accurate predictions than any individual model. Specifically, it builds multiple decision trees and merges them together to get a more accurate and stable prediction.
+
 -   **Handling of Both Categorical and Numerical Features：**It can handle a mix of categorical and numerical features. There is no need to pre-process data to convert categorical features to numerical features.
+
 -   **Feature Importance：**One of the useful outputs of Random Forest is the importance or contribution of each feature in the prediction. This helps in understanding the data better and can be used for feature selection.
+
 -   **Avoids Overfitting：** Due to the way it constructs the decision trees (using a subset of features and samples), it generally does a good job of avoiding overfitting, especially compared to individual decision trees.
+
 -   **No Need for Future Scaling：**Random Forest does not require feature scaling (like standardization or normalization) before input, as it does not rely on distance calculations.
+
 -   **Handles Missing Values:** It can handle missing values in the data, though the way it does this can vary depending on the implementation.
+
 -   **Robust to Outliers:** It is generally robust to outliers and can handle them better than many other algorithms.
+
 -   **Good for Large Datasets：**It can handle large datasets with higher dimensionality (many features) and can evaluate the importance of different features for the classification/regression tasks.
+
 -   **Versatility in Performance Metrics：** It supports various metrics for evaluating the performance suitable for different types of problems (classification, regression)
-<<<<<<< HEAD
+
 -   **Parallelizable：** The algorithm can be parallelized for execution because each tree in the forest is built independently of the others, which makes the algorithm well-suited for modern multi-processor computers.
-=======
--   **Parallelizable：** The algorithm can be parallelized for execution because each tree in the forest is built independently of the others, which makes the algorithm well-suited for modern multi-processor computers.
->>>>>>> 3f4cac0c1f18972405ea4b455d04e22ebe23682b
