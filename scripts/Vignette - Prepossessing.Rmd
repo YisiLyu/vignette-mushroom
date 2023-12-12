@@ -1,0 +1,101 @@
+---
+title: "Hotel Researvations - Prepossessing"
+output: html_document
+date: "2023-12-05"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidymodels)
+library(ISLR)
+library(ISLR2)
+library(tidyverse)
+library(glmnet)
+library(modeldata)
+library(ggthemes)
+library(janitor)
+library(corrr)
+library(naniar) 
+library(corrplot) 
+library(patchwork) 
+library(rpart.plot)
+library(ranger)
+library(vip)
+library(randomForest)
+library(kknn)
+tidymodels_prefer()
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+
+# Read In Data
+```{r cars}
+hotel <- read.csv("~/Desktop/HotelReservations.csv")
+hotel
+```
+
+## Preprocessing - Visualizing EDA
+# Correlation atrix:
+```{r}
+hotel %>%
+  select(is.numeric) %>%
+  cor() %>%
+  corrplot()
+```
+
+We can see that no_of_repeated_guest is positively correlated with no_of_previous_bookings_not_canceled.
+Arrival year is negatively correlated with arrival_month.
+
+However, the correlation matrix indicates that there are too many predictors, some of which are more or less pointless. Therefore, we will select a few key predictors later on to simplify and clarify our model's predictions.
+
+
+# Histogram
+```{r}
+hotel %>%
+  ggplot(aes(x=booking_status)) +
+  geom_bar() +
+  labs(title = "Distribution of Booking Status")
+```
+
+We can see that "Yes" has far more outcomes than "No," indicating that many people cancel their reservations. This means we will have a substantial amount of data for analysis.
+
+
+# Ggplot of booking_status by no_of_adults.
+```{r}
+ggplot(hotel, aes(no_of_adults)) + 
+  geom_bar(aes(fill = booking_status)) +
+  scale_fill_manual(values = c("#0066CC", "#FF6633"))
+```
+
+We can see that when there are no adults, the booking status is entirely canceled. Conversely, when the number of adults equals two, a significantly higher proportion of people keep their booking reservations. However, upon closer examination, the number of adults may not be a reliable predictor.
+
+
+# Ggplot of booking_status by no_of_week_nights.
+```{r}
+ggplot(hotel, aes(no_of_week_nights)) + 
+  geom_bar(aes(fill = booking_status)) +
+  scale_fill_manual(values = c("#0066FF", "#00FF4D"))
+```
+
+We can see that there are still more "Yes" responses than "No" for any number of week nights. At first glance, the number of week nights might not be a good indicator. Therefore, I will not focus on this or draw any conclusions from it, and I will remove this predictor from the recipe we create later.
+
+
+# Ggplot of booking_status by lead_time.
+```{r}
+ggplot(hotel, aes(lead_time)) + 
+  geom_bar(aes(fill = booking_status)) +
+  scale_fill_manual(values = c("#4DB3E6", "#37004D"))
+```
+
+We can observe that lead time varies among all observations. However, as lead time increases, the instances of "No" surpass those of "Yes". This is indicated by the deep blue cylinder tending to decrease as the x-axis increases. Therefore, lead time might be a good indicator.
+
+
+
+
+
+
