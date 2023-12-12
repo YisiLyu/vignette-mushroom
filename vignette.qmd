@@ -10,7 +10,7 @@ author: Mindy Xu, Zoe Zhou, Amy Lyu, Jerry Huang
 
 ## Introduction
 
-> In this project, we are presenting a vignette on Random Forest. If you are new to this topic, then this vignette would be a great guideline for you to have a great understanding on Random forest model, and we will also show the sample code on a dataset to predict the edibility of mushrooms using Random Forest.
+> In this project, we are presenting a vignette on Random Forest. If you are new to this topic, then this vignette would be a great guideline for you to have a great understanding on Random forest model, and we will also show the sample code on a dataset to predict hotel cancellation using Random Forest.
 
 *Learning Objectives:*
 
@@ -29,8 +29,48 @@ Here we have a introductory video for you to better know what is Random Forest.
 ### Data Description
 
 ```         
-This dataset includes descriptions of hypothetical samples of 23 species of mushrooms. It contains 22 categorical predictor variables and one target variable. The objective is to use different attributes of the mushrooms to make the most accurate predictions of the edibility of them. The samples are hypothetical because the dataset was designed in a way so that no simple decision rules may apply. There are 8124 samples in total.
+This dataset is obtained from kaggle. There are 19 predictors in this data set. Booking status is the target varibale, indicating whether the reservation was canceled or not (binary: 2 values). There are 36275 observations in total. The goal of predicting hotel reservations is to forecast the number of bookings a hotel will receive for a specific date range, based on historical data and other relevant factors such as seasonality, market trends, and pricing strategies.
 ```
+
+#### Data Dictionary
+
+-   Booking_ID: unique identifier of each booking
+
+-   no_of_adults: Number of adults
+
+-   no_of_children: Number of Children
+
+-   no_of_weekend_nights: Number of weekend nights (Saturday or Sunday) the guest stayed or booked to stay at the hotel
+
+-   no_of_week_nights: Number of week nights (Monday to Friday) the guest stayed or booked to stay at the hotel
+
+-   type_of_meal_plan: Type of meal plan booked by the customer
+
+-   required_car_parking_space: Does the customer require a car parking space? (0 - No, 1- Yes)
+
+-   room_type_reserved: Type of room reserved by the customer. The values are ciphered (encoded) by INN Hotels.
+
+-   lead_time: Number of days between the date of booking and the arrival date
+
+-   arrival_year: Year of arrival date
+
+-   arrival_month: Month of arrival date
+
+-   arrival_date: Date of the month
+
+-   market_segment_type: Market segment designation.
+
+-   repeated_guest: Is the customer a repeated guest? (0 - No, 1- Yes)
+
+-   no_of_previous_cancellations: Number of previous bookings that were canceled by the customer prior to the current booking
+
+-   no_of_previous_bookings_not_canceled: Number of previous bookings not canceled by the customer prior to the current booking
+
+-   avg_price_per_room: Average price per day of the reservation; prices of the rooms are dynamic. (in euros)
+
+-   no_of_special_requests: Total number of special requests made by the customer (e.g. high floor, view from the room, etc)
+
+-   booking_status: Flag indicating if the booking was canceled or not.
 
 ### Load Packages and data
 
@@ -52,7 +92,7 @@ mushrooms <- read.csv('data/mushrooms.csv')
 
 ### Preprocess the data
 
-```{r}         
+```{r}
 # turn a categorical variable into factors
 mushrooms$class <- as.factor(mushrooms$class)
 ```
@@ -65,7 +105,7 @@ Turn other categorical variables into factors.
 
 ## Data Partition
 
-```{r}         
+```{r}
 set.seed(10000)
 # Splitting the data (70/30 split, stratify on capture rate)
 mushrooms_split <- initial_split(mushrooms, prop = 0.7, strata = class)
@@ -76,7 +116,7 @@ mushrooms_test <- testing(mushrooms_split)
 ::: {.callout-note style="background-color: #ffebee; color: black; border-left: 3px solid red;"}
 #### Action
 
-Try split the data with different stratification to see if the results change.
+Try split the data with different stratification to see if the results change. Is there a better stratification? Check the dimension of training data and testing data to see if the data has been split correctly.
 :::
 
 ## Intuition and Architecture
@@ -143,36 +183,3 @@ Try split the data with different stratification to see if the results change.
 -   **Good for Large Datasets：**It can handle large datasets with higher dimensionality (many features) and can evaluate the importance of different features for the classification/regression tasks.
 -   **Versatility in Performance Metrics：** It supports various metrics for evaluating the performance suitable for different types of problems (classification, regression)
 -   **Parallelizable：** The algorithm can be parallelized for execution because each tree in the forest is built independently of the others, which makes the algorithm well-suited for modern multi-processor computers.
-
-## Example Data -- Mushroom Data to Implement
-
-#### Data Description
-
-> This dataset includes descriptions of hypothetical samples of 23 species of mushrooms. It contains 22 categorical predictor variables and one target variable. The objective is to use different attributes of the mushrooms to make the most accurate predictions of the edibility of them. The samples are hypothetical because the dataset was designed in a way so that no simple decision rules may apply. There are 8124 samples in total.
-
-##### Load Library
-
-```{r results='hide', message=FALSE}
-library(tidymodels)
-library(tidyverse)
-library(randomForest)
-library(dplyr)
-library(caret)
-library(janitor)
-library(ranger)
-tidymodels_prefer()
-```
-
-##### Load Data
-
-```{r}
-# loading the data
-mushrooms <- read.csv('data/mushrooms.csv')
-```
-
-##### Preliminary Task
-
-```{r}
-# cleaning predictor names
-mushrooms <- clean_names(mushrooms)
-```
