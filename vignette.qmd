@@ -182,4 +182,8 @@ Try split the data with different stratification to see if the results change. I
 -   **Robust to Outliers:** It is generally robust to outliers and can handle them better than many other algorithms.
 -   **Good for Large Datasets：**It can handle large datasets with higher dimensionality (many features) and can evaluate the importance of different features for the classification/regression tasks.
 -   **Versatility in Performance Metrics：** It supports various metrics for evaluating the performance suitable for different types of problems (classification, regression)
+<<<<<<< HEAD
 -   **Parallelizable：** The algorithm can be parallelized for execution because each tree in the forest is built independently of the others, which makes the algorithm well-suited for modern multi-processor computers.
+=======
+-   **Parallelizable：** The algorithm can be parallelized for execution because each tree in the forest is built independently of the others, which makes the algorithm well-suited for modern multi-processor computers.
+>>>>>>> 3f4cac0c1f18972405ea4b455d04e22ebe23682b
