@@ -29,17 +29,55 @@ Here we have a introductory video for you to better know what is Random Forest.
 ### Data Description
 
 ```         
-/* Description
+This dataset includes descriptions of hypothetical samples of 23 species of mushrooms. It contains 22 categorical predictor variables and one target variable. The objective is to use different attributes of the mushrooms to make the most accurate predictions of the edibility of them. The samples are hypothetical because the dataset was designed in a way so that no simple decision rules may apply. There are 8124 samples in total.
 ```
 
 ### Load Packages and data
 
+```{r results='hide', message=FALSE}
+# loading packages
+library(tidymodels)
+library(tidyverse)
+library(randomForest)
+library(dplyr)
+library(caret)
+library(janitor)
+library(ranger)
+tidymodels_prefer()
+
+
+# loading the data
+mushrooms <- read.csv('data/mushrooms.csv')
+```
+
 ### Preprocess the data
 
-```         
-/* Sample Code: (turn a categorical variable into factors)
-/* Action (turn other categorical variables into factors)
+```{r}         
+# turn a categorical variable into factors
+mushrooms$class <- as.factor(mushrooms$class)
 ```
+
+::: {.callout-note style="background-color: #ffebee; color: black; border-left: 3px solid red;"}
+#### Action
+
+Turn other categorical variables into factors.
+:::
+
+## Data Partition
+
+```{r}         
+set.seed(10000)
+# Splitting the data (70/30 split, stratify on capture rate)
+mushrooms_split <- initial_split(mushrooms, prop = 0.7, strata = class)
+mushrooms_train <- training(mushrooms_split)
+mushrooms_test <- testing(mushrooms_split)
+```
+
+::: {.callout-note style="background-color: #ffebee; color: black; border-left: 3px solid red;"}
+#### Action
+
+Try split the data with different stratification to see if the results change.
+:::
 
 ## Intuition and Architecture
 
