@@ -39,7 +39,7 @@ Here we have a introductory video for you to better know what is Random Forest.
 ## Intuition and Architecture
 
 ### Understanding Decision Trees
-    /* Description:
+    /* Description: A decision tree is a binary tree in which the paths represent classification rules.
     /* Sample code: 
     /* Action:
 
